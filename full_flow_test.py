@@ -86,3 +86,12 @@ for msg in test_messages:
         print(f"Response ends with: ...{response['response'][-150:]}")
     else:
         print(f"Response: {response['response']}")
+
+
+
+if __name__ == "__main__":
+    main()
+
+
+if __name__ == "__main__":
+    main()
