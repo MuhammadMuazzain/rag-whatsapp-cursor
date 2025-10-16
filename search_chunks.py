@@ -40,3 +40,14 @@ for i, chunk in enumerate(chunks):
         except:
             print(chunk[:400])
         print("...\n")
+
+# Search for any percentage mentions with population
+for i, chunk in enumerate(chunks):
+    chunk_lower = chunk.lower()
+    if ('population' in chunk_lower or 'prevalence' in chunk_lower or 'affected' in chunk_lower) and ('%' in chunk or 'percent' in chunk_lower):
+        print(f"=== Chunk {i} (POPULATION DATA) ===")
+        try:
+            print(chunk.encode('ascii', 'ignore').decode('ascii')[:400])
+        except:
+            print(chunk[:400])
+        print("...\n")
