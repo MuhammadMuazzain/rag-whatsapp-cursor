@@ -51,3 +51,11 @@ if "vitiligosupportgroup.com" in response:
     print("\n[SUCCESS] Link is in final response!")
 else:
     print("\n[FAILED] Link is NOT in final response!")
+
+
+if __name__ == "__main__":
+    main()
+
+
+if __name__ == "__main__":
+    main()
