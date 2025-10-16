@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Irene Chuah"
+                },
+                "wa_id": "6596782055"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6596782055",
+                "id": "wamid.HBgKNjU5Njc4MjA1NRUCABIYFDNBMUM3NzI2OUY3Q0QyNzQzQUMyAA==",
+                "timestamp": "1756180837",
+                "text": {
+                  "body": "Hi\n\nI am currently a patient with NSC since Feb 2025.\nCurrently using fluocinolone cream weekly phototherapy.\n\nI read that NSC is recruiting patients to try new cream - ruxolitinib & opzelura\nI would like to be recruited for this trial \nThanks \u2026..Ire Mow Soo Mui - IC S2588314D"
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

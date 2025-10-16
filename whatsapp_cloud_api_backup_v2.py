@@ -5,16 +5,14 @@ FastAPI backend to handle WhatsApp messages and respond using a RAG chatbot
 
 import os
 import logging
-from typing import Dict, Any, Optional, Set
-from datetime import datetime, timedelta
+from typing import Dict, Any, Optional
+from datetime import datetime
 import httpx
-from fastapi import FastAPI, Request, Query, HTTPException, BackgroundTasks
+from fastapi import FastAPI, Request, Query, HTTPException
 from fastapi.responses import PlainTextResponse
 from dotenv import load_dotenv
 import json
 import time
-import asyncio
-from collections import deque
 from message_logger import get_logger
 
 # Import your existing RAG and conversation components
@@ -36,29 +34,6 @@ app = FastAPI(title="WhatsApp RAG Chatbot", version="1.0.0")
 
 # Initialize message logger
 msg_logger = get_logger()
-
-# Duplicate message detection
-# Store processed message IDs with timestamp for cleanup
-processed_messages: Dict[str, datetime] = {}
-message_processing_lock = asyncio.Lock()
-
-# Cleanup old message IDs every hour to prevent memory growth
-async def cleanup_old_messages():
-    """Remove message IDs older than 1 hour from tracking"""
-    while True:
-        try:
-            await asyncio.sleep(3600)  # Wait 1 hour
-            current_time = datetime.now()
-            expired_keys = [
-                msg_id for msg_id, timestamp in processed_messages.items()
-                if current_time - timestamp > timedelta(hours=1)
-            ]
-            for key in expired_keys:
-                del processed_messages[key]
-            if expired_keys:
-                logger.info(f"Cleaned up {len(expired_keys)} old message IDs")
-        except Exception as e:
-            logger.error(f"Error in cleanup task: {e}")
 
 # Configuration
 WHATSAPP_ACCESS_TOKEN = os.getenv("WHATSAPP_ACCESS_TOKEN")
@@ -357,17 +332,28 @@ async def verify_webhook(
         raise HTTPException(status_code=403, detail="Verification failed")
 
 
-async def process_message_async(message_data: Dict[str, Any], webhook_body: Dict[str, Any]):
+@app.post("/webhook")
+async def handle_webhook(request: Request):
     """
-    Process WhatsApp message asynchronously in the background
-    This function handles the actual RAG processing and response sending
+    Main webhook endpoint to handle incoming WhatsApp messages
     """
     try:
+        # Parse the request body
+        body = await request.json()
+        logger.info(f"📥 Webhook received: {json.dumps(body, indent=2)}")
+        
+        # Parse the message
+        message_data = WhatsAppMessage.parse_message(body)
+        
+        if not message_data:
+            logger.info("No processable message found in webhook")
+            return {"status": "ok"}
+        
         # Log the incoming message to our logger
-        msg_logger.log_incoming_message(webhook_body, message_data)
+        msg_logger.log_incoming_message(body, message_data)
         
         # Log the incoming message
-        logger.info(f"💬 Processing message from {message_data['contact_name']} ({message_data['from']}): {message_data['text']}")
+        logger.info(f"💬 Incoming message from {message_data['contact_name']} ({message_data['from']}): {message_data['text']}")
         
         # Mark message as read
         await WhatsAppSender.mark_as_read(message_data['message_id'])
@@ -381,7 +367,7 @@ async def process_message_async(message_data: Dict[str, Any], webhook_body: Dict
             # Use phone number as session ID for conversation continuity
             session_id = f"whatsapp_{message_data['from']}"
             chatbot_response = generate_answer(message_data['text'], session_id)
-            logger.info(f"🤖 RAG response generated: {chatbot_response[:200]}...")  # Log first 200 chars
+            logger.info(f"🤖 RAG response: {chatbot_response[:200]}...")  # Log first 200 chars
         except Exception as e:
             logger.error(f"Error generating RAG response: {e}")
             msg_logger.log_error("RAG_PROCESSING", str(e), related_message_id=message_data['message_id'])
@@ -389,7 +375,6 @@ async def process_message_async(message_data: Dict[str, Any], webhook_body: Dict
         
         # Calculate processing time
         processing_time_ms = int((time.time() - start_time) * 1000)
-        logger.info(f"⏱️ RAG processing took {processing_time_ms}ms")
         
         # Send the response back to the user
         api_start = time.time()
@@ -424,53 +409,7 @@ async def process_message_async(message_data: Dict[str, Any], webhook_body: Dict
             logger.info(f"✉️ Response sent to {message_data['from']}: {chatbot_response[:100]}...")
         else:
             logger.error(f"Failed to send response to {message_data['from']}")
-            
-    except Exception as e:
-        logger.error(f"Error in async message processing: {e}")
-        msg_logger.log_error("ASYNC_PROCESSING", str(e), related_message_id=message_data.get('message_id'))
-
-
-@app.post("/webhook")
-async def handle_webhook(request: Request):
-    """
-    Main webhook endpoint to handle incoming WhatsApp messages
-    Now with immediate acknowledgment and duplicate detection
-    """
-    try:
-        # Parse the request body
-        body = await request.json()
-        logger.info(f"📥 Webhook received: {json.dumps(body, indent=2)}")
         
-        # Parse the message
-        message_data = WhatsAppMessage.parse_message(body)
-        
-        if not message_data:
-            logger.info("No processable message found in webhook")
-            return {"status": "ok"}
-        
-        # Check for duplicate messages
-        message_id = message_data['message_id']
-        
-        async with message_processing_lock:
-            # Check if we've already processed this message
-            if message_id in processed_messages:
-                logger.info(f"🔁 Duplicate message detected: {message_id}. Ignoring.")
-                return {"status": "ok"}  # Acknowledge but don't process
-            
-            # Mark this message as being processed
-            processed_messages[message_id] = datetime.now()
-            logger.info(f"📝 New message {message_id} added to processing queue")
-        
-        # Log that we're starting async processing
-        logger.info(f"💬 Incoming message from {message_data['contact_name']} ({message_data['from']}): {message_data['text']}")
-        logger.info(f"🚀 Starting background processing for message {message_id}")
-        
-        # Create background task for processing
-        # This allows us to return immediately while processing continues
-        asyncio.create_task(process_message_async(message_data, body))
-        
-        # Return immediately to acknowledge receipt (within 1-2 seconds)
-        logger.info(f"✅ Webhook acknowledged for message {message_id}")
         return {"status": "ok"}
         
     except json.JSONDecodeError:
@@ -528,14 +467,6 @@ async def export_logs(start_date: str = None, end_date: str = None):
     """
     filename = msg_logger.export_to_csv(start_date=start_date, end_date=end_date)
     return {"status": "exported", "filename": filename}
-
-
-@app.on_event("startup")
-async def startup_event():
-    """Start background tasks on server startup"""
-    # Start the cleanup task for old message IDs
-    asyncio.create_task(cleanup_old_messages())
-    logger.info("🧹 Started message ID cleanup task")
 
 
 if __name__ == "__main__":

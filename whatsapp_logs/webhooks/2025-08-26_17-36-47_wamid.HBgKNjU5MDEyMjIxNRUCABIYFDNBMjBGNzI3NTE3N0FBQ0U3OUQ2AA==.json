@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Oh Ming Hwee"
+                },
+                "wa_id": "6590122215"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6590122215",
+                "id": "wamid.HBgKNjU5MDEyMjIxNRUCABIYFDNBMjBGNzI3NTE3N0FBQ0U3OUQ2AA==",
+                "timestamp": "1756211805",
+                "text": {
+                  "body": "Hi my name is Oh Ming Hwee. I read from ST that NSC is recruiting people to participate in the vitiligo study. I am keen to do so. Would appreciate if more information can be provided and if you could let me know if I am eligible to participate in the program. Thank you!"
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

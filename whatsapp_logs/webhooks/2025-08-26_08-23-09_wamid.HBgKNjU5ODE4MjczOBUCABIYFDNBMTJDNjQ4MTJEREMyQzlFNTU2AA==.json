@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Kim"
+                },
+                "wa_id": "6598182738"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6598182738",
+                "id": "wamid.HBgKNjU5ODE4MjczOBUCABIYFDNBMTJDNjQ4MTJEREMyQzlFNTU2AA==",
+                "timestamp": "1756178587",
+                "text": {
+                  "body": "Hi, I\u2019m interested in the Vitiligo special access program. I got vitiligo on face, neck and both hands and fingers."
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

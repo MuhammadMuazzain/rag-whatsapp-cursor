@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "MMK"
+                },
+                "wa_id": "923314126791"
+              }
+            ],
+            "messages": [
+              {
+                "from": "923314126791",
+                "id": "wamid.HBgMOTIzMzE0MTI2NzkxFQIAEhggM0IyQTAxNDA4MEM4NzQ4OEZFNjc2Mzg1MzhBRTk5NUEA",
+                "timestamp": "1756143728",
+                "text": {
+                  "body": "What is vitiligo"
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

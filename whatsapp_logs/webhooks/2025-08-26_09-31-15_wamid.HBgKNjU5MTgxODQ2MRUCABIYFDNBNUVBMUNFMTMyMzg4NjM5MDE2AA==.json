@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Zhao Feng Quek"
+                },
+                "wa_id": "6591818461"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6591818461",
+                "id": "wamid.HBgKNjU5MTgxODQ2MRUCABIYFDNBNUVBMUNFMTMyMzg4NjM5MDE2AA==",
+                "timestamp": "1756182672",
+                "text": {
+                  "body": "Hi, can i get more information on the Special Access Programme for Vitiligo? \n\nNamely, what are the time commitments to participate in the trial? \n\nWhere will the trial be conducted?"
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

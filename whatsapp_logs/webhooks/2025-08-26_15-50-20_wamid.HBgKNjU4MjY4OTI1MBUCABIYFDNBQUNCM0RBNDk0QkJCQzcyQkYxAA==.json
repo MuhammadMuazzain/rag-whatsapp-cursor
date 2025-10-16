@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Antony"
+                },
+                "wa_id": "6582689250"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6582689250",
+                "id": "wamid.HBgKNjU4MjY4OTI1MBUCABIYFDNBQUNCM0RBNDk0QkJCQzcyQkYxAA==",
+                "timestamp": "1756172680",
+                "text": {
+                  "body": "Hello there, my name is Antony Sallas. I am a Vitiligo patient and I would like to participate in the \u201cRuxolitinib\u201d special access program. Could you kindly help with the process to enrol? Thank you! \ud83d\ude4f\ud83c\udffd"
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

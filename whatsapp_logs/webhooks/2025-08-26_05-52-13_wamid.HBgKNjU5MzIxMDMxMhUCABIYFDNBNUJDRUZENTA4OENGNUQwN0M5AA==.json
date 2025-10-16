@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "923495521447",
+              "phone_number_id": "749533054912424"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Marcus Ho"
+                },
+                "wa_id": "6593210312"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6593210312",
+                "id": "wamid.HBgKNjU5MzIxMDMxMhUCABIYFDNBNUJDRUZENTA4OENGNUQwN0M5AA==",
+                "timestamp": "1756169531",
+                "text": {
+                  "body": "Hi"
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

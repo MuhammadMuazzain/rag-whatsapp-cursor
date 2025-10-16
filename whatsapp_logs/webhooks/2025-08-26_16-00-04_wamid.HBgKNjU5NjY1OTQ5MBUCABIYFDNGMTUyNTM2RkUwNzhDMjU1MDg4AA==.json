@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "yschiao"
+                },
+                "wa_id": "6596659490"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6596659490",
+                "id": "wamid.HBgKNjU5NjY1OTQ5MBUCABIYFDNGMTUyNTM2RkUwNzhDMjU1MDg4AA==",
+                "timestamp": "1756199519",
+                "text": {
+                  "body": "I am interested in information on the special access programme."
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

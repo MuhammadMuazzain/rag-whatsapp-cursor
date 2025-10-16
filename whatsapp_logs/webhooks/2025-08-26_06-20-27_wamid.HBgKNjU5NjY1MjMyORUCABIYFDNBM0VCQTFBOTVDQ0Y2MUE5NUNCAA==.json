@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Wilson Chua"
+                },
+                "wa_id": "6596652329"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6596652329",
+                "id": "wamid.HBgKNjU5NjY1MjMyORUCABIYFDNBM0VCQTFBOTVDQ0Y2MUE5NUNCAA==",
+                "timestamp": "1756171226",
+                "text": {
+                  "body": "Hi, I would like to know more info about clinical trials for vitiligo using ruxolitinib cream."
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

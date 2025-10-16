@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Teck Yew"
+                },
+                "wa_id": "6593625711"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6593625711",
+                "id": "wamid.HBgKNjU5MzYyNTcxMRUCABIYFDNBRUVBQTBFMjk3OUUyN0ZDQUZCAA==",
+                "timestamp": "1756183950",
+                "text": {
+                  "body": "Hi VSG Team, i'm interested with the special access program."
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Tat"
+                },
+                "wa_id": "6590460821"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6590460821",
+                "id": "wamid.HBgKNjU5MDQ2MDgyMRUCABIYFDNBNkZCRTA4RDBENzI5QzNGQTU3AA==",
+                "timestamp": "1756185609",
+                "text": {
+                  "body": "Hi VSG Team, i'm interested with the special access program."
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

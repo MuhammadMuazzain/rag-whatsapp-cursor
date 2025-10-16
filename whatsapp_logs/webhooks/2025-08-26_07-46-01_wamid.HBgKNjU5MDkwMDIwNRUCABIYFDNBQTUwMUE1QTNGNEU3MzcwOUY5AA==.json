@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "andyleengee"
+                },
+                "wa_id": "6590900205"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6590900205",
+                "id": "wamid.HBgKNjU5MDkwMDIwNRUCABIYFDNBQTUwMUE1QTNGNEU3MzcwOUY5AA==",
+                "timestamp": "1756176359",
+                "text": {
+                  "body": "I would like to find out more on the vitiligo test program. How do I sign up? Any briefing regarding risk involved?"
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

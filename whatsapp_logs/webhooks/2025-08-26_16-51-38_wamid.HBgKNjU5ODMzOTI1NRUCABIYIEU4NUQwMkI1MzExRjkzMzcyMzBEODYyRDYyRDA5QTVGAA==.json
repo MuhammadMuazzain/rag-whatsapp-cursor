@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Peiee"
+                },
+                "wa_id": "6598339255"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6598339255",
+                "id": "wamid.HBgKNjU5ODMzOTI1NRUCABIYIEU4NUQwMkI1MzExRjkzMzcyMzBEODYyRDYyRDA5QTVGAA==",
+                "timestamp": "1756189459",
+                "text": {
+                  "body": "Hi,\n\nWe\u2019re very excited to learn about the trial program for your newly launched vitiligo cream. We understand there is an opportunity for volunteers to try the product, and we would be thrilled to be part of this initiative.\n\nCould you kindly share the details on how we can participate? We\u2019re eager to contribute to the trial and provide feedback to support the success of this product.\n\nThank you for considering our request, and we look forward to your positive response.\n\nThanks,\nPei Ee"
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

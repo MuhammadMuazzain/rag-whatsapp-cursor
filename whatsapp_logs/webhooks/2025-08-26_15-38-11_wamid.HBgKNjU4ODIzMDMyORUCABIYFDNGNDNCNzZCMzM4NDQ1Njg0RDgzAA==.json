@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "JC"
+                },
+                "wa_id": "6588230329"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6588230329",
+                "id": "wamid.HBgKNjU4ODIzMDMyORUCABIYFDNGNDNCNzZCMzM4NDQ1Njg0RDgzAA==",
+                "timestamp": "1756204240",
+                "text": {
+                  "body": "My dad is actually a Malaysian, and interested to join the NSC clinical trial programme, can he join?"
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Rajoo"
+                },
+                "wa_id": "6598527451"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6598527451",
+                "id": "wamid.HBgKNjU5ODUyNzQ1MRUCABIYIDgwMUY5OTE0NDVERjIxRTA0NENDN0IyNEFCRTIyQ0ZDAA==",
+                "timestamp": "1756210104",
+                "text": {
+                  "body": "I was involed few years ago in a test in NSC. My name is Rajoo."
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

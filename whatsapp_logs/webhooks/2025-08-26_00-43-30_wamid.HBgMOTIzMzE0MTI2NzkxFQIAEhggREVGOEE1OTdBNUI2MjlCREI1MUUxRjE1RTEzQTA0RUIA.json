@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "923495521447",
+              "phone_number_id": "749533054912424"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "MMK"
+                },
+                "wa_id": "923314126791"
+              }
+            ],
+            "messages": [
+              {
+                "from": "923314126791",
+                "id": "wamid.HBgMOTIzMzE0MTI2NzkxFQIAEhggREVGOEE1OTdBNUI2MjlCREI1MUUxRjE1RTEzQTA0RUIA",
+                "timestamp": "1756151010",
+                "text": {
+                  "body": "What is ncs trial"
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

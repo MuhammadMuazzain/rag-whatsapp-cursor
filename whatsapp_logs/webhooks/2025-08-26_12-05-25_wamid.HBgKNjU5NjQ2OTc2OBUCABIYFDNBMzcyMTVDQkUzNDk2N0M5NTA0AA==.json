@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Gina Zhu"
+                },
+                "wa_id": "6596469768"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6596469768",
+                "id": "wamid.HBgKNjU5NjQ2OTc2OBUCABIYFDNBMzcyMTVDQkUzNDk2N0M5NTA0AA==",
+                "timestamp": "1756191923",
+                "text": {
+                  "body": "Hi, I would like to find out more about the Ruxolitinib cream and be part of the study group. Please advise on the process. I have vitiligo since 18 years old and I\u2019m 42 now."
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

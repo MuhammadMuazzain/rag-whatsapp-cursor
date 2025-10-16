@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Eva Hor"
+                },
+                "wa_id": "6598419110"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6598419110",
+                "id": "wamid.HBgKNjU5ODQxOTExMBUCABIYFDNBMjE2NDVENjY0MjkwMTA3NEJEAA==",
+                "timestamp": "1756175694",
+                "text": {
+                  "body": "Hi good morning. I read in the papers about the trial on the cream and was wondering if I can find out a bit more. Thank you."
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

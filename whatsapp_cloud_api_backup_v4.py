@@ -120,6 +120,31 @@ def _finalize_before_link(text: str) -> str:
     
     return text
 
+async def generate_answer_with_timeout(query: str, session_id: str = None, timeout: int = 30) -> str:
+    """
+    Generate answer with timeout protection
+    This wrapper ensures we don't wait forever for RAG responses
+    """
+    try:
+        # Run the synchronous generate_answer in a thread with timeout
+        result = await asyncio.wait_for(
+            asyncio.to_thread(generate_answer, query, session_id),
+            timeout=timeout
+        )
+        return result
+    except asyncio.TimeoutError:
+        logger.warning(f"RAG timeout after {timeout}s for query: {query[:50]}...")
+        # Return a helpful message when timeout occurs
+        return (
+            "I'm taking a bit longer to process your question. "
+            "Here's what I know: Vitiligo is a skin condition that causes loss of pigmentation. "
+            "For detailed information and community support, please visit: vitiligosupportgroup.com"
+        )
+    except Exception as e:
+        logger.error(f"Error in generate_answer_with_timeout: {e}")
+        return "I apologize, but I'm having trouble processing your request. Please try again in a moment."
+
+
 def generate_answer(query: str, session_id: str = None) -> str:
     """
     Generate answer using the actual RAG engine with conversation context
@@ -361,7 +386,11 @@ async def process_message_async(message_data: Dict[str, Any], webhook_body: Dict
     """
     Process WhatsApp message asynchronously in the background
     This function handles the actual RAG processing and response sending
+    CRITICAL: Always sends a response to prevent WhatsApp retries
     """
+    response_sent = False
+    chatbot_response = None
+    
     try:
         # Log the incoming message to our logger
         msg_logger.log_incoming_message(webhook_body, message_data)
@@ -369,29 +398,47 @@ async def process_message_async(message_data: Dict[str, Any], webhook_body: Dict
         # Log the incoming message
         logger.info(f"💬 Processing message from {message_data['contact_name']} ({message_data['from']}): {message_data['text']}")
         
-        # Mark message as read
+        # Mark message as read first
         await WhatsAppSender.mark_as_read(message_data['message_id'])
+        
+        # Send immediate acknowledgment to user (optional but helpful)
+        immediate_ack = "📝 Processing your question..."
+        await WhatsAppSender.send_text_message(
+            to=message_data['from'],
+            text=immediate_ack,
+            reply_to_message_id=message_data['message_id']
+        )
+        logger.info("Sent immediate acknowledgment to user")
         
         # Track processing time
         start_time = time.time()
         
-        # Generate response using RAG chatbot with session tracking
+        # Generate response using RAG chatbot with timeout protection
         try:
-            logger.info(f"🤖 Generating RAG response...")
+            logger.info(f"🤖 Generating RAG response with 30s timeout...")
             # Use phone number as session ID for conversation continuity
             session_id = f"whatsapp_{message_data['from']}"
-            chatbot_response = generate_answer(message_data['text'], session_id)
+            # Use the timeout wrapper instead of direct call
+            chatbot_response = await generate_answer_with_timeout(
+                message_data['text'], 
+                session_id, 
+                timeout=30  # 30 second timeout
+            )
             logger.info(f"🤖 RAG response generated: {chatbot_response[:200]}...")  # Log first 200 chars
         except Exception as e:
             logger.error(f"Error generating RAG response: {e}")
             msg_logger.log_error("RAG_PROCESSING", str(e), related_message_id=message_data['message_id'])
-            chatbot_response = "I apologize, but I'm having trouble processing your request right now. Please try again later."
+            # Fallback response if RAG completely fails
+            chatbot_response = (
+                "I apologize for the delay. I'm having trouble accessing my knowledge base right now. "
+                "For immediate support and information about vitiligo, please visit: vitiligosupportgroup.com"
+            )
         
         # Calculate processing time
         processing_time_ms = int((time.time() - start_time) * 1000)
         logger.info(f"⏱️ RAG processing took {processing_time_ms}ms")
         
-        # Send the response back to the user
+        # Send the actual response back to the user
         api_start = time.time()
         success = await WhatsAppSender.send_text_message(
             to=message_data['from'],
@@ -399,6 +446,7 @@ async def process_message_async(message_data: Dict[str, Any], webhook_body: Dict
             reply_to_message_id=message_data['message_id']
         )
         api_time_ms = int((time.time() - api_start) * 1000)
+        response_sent = success
         
         # Log the response
         api_response = {"success": success, "processing_time_ms": processing_time_ms}
@@ -421,13 +469,37 @@ async def process_message_async(message_data: Dict[str, Any], webhook_body: Dict
         )
         
         if success:
-            logger.info(f"✉️ Response sent to {message_data['from']}: {chatbot_response[:100]}...")
+            logger.info(f"✉️ Response sent successfully to {message_data['from']}")
         else:
-            logger.error(f"Failed to send response to {message_data['from']}")
+            logger.error(f"❌ Failed to send response to {message_data['from']}")
             
     except Exception as e:
-        logger.error(f"Error in async message processing: {e}")
+        logger.error(f"Critical error in async message processing: {e}")
         msg_logger.log_error("ASYNC_PROCESSING", str(e), related_message_id=message_data.get('message_id'))
+        
+    finally:
+        # CRITICAL: Always try to send SOMETHING if we haven't sent anything yet
+        if not response_sent:
+            try:
+                logger.warning("No response was sent, sending fallback message to prevent retries")
+                fallback_msg = (
+                    "Thank you for your message. I'm experiencing technical difficulties right now. "
+                    "Please try again in a few minutes or visit vitiligosupportgroup.com for immediate help."
+                )
+                await WhatsAppSender.send_text_message(
+                    to=message_data['from'],
+                    text=fallback_msg,
+                    reply_to_message_id=message_data['message_id']
+                )
+                logger.info("Fallback message sent to prevent WhatsApp retries")
+            except Exception as fallback_error:
+                logger.error(f"Even fallback message failed: {fallback_error}")
+                # At this point, we've tried everything - log for manual intervention
+                msg_logger.log_error(
+                    "CRITICAL_SEND_FAILURE", 
+                    f"Could not send any response to {message_data['from']}", 
+                    related_message_id=message_data.get('message_id')
+                )
 
 
 @app.post("/webhook")

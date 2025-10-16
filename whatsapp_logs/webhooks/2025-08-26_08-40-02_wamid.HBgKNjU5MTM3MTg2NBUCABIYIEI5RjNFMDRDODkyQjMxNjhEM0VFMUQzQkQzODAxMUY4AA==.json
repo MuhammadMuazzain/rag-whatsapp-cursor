@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "J"
+                },
+                "wa_id": "6591371864"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6591371864",
+                "id": "wamid.HBgKNjU5MTM3MTg2NBUCABIYIEI5RjNFMDRDODkyQjMxNjhEM0VFMUQzQkQzODAxMUY4AA==",
+                "timestamp": "1756179600",
+                "text": {
+                  "body": "Ruxolitinib cream"
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}

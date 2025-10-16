@@ -6,7 +6,8 @@
       "Bash(curl:*)",
       "Bash(timeout 2 sleep 2)",
       "Bash(dir vector_store)",
-      "Bash(\"C:\\Program Files\\Python310\\python.exe\" test_rag.py)"
+      "Bash(\"C:\\Program Files\\Python310\\python.exe\" test_rag.py)",
+      "Bash(\"C:\\Program Files\\Python310\\python.exe\" -m pip install --upgrade torch)"
     ],
     "deny": [],
     "ask": []

@@ -1,0 +1,39 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "698647366529686",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "6580361975",
+              "phone_number_id": "755335244332796"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Golf Alpha Kilo supplies"
+                },
+                "wa_id": "6589324753"
+              }
+            ],
+            "messages": [
+              {
+                "from": "6589324753",
+                "id": "wamid.HBgKNjU4OTMyNDc1MxUCABIYFDNBREJGQTk1N0FBRDIzMTUyRkMwAA==",
+                "timestamp": "1756215210",
+                "text": {
+                  "body": "Im Mr Koh here .."
+                },
+                "type": "text"
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}
