@@ -88,3 +88,20 @@ for msg in test_messages:
     else:
         print(f"Response: {response['response']}")
 
+
+
+for msg in test_messages:
+    print(f"\nTesting: '{msg}'")
+    print("-" * 40)
+    
+    request = ChatRequest(message=msg, session_id="test_session")
+    response = simulate_chat_endpoint(request)
+    
+    print(f"Response length: {len(response['response'])} chars")
+    print(f"Has link: {'vitiligosupportgroup.com' in response['response']}")
+    
+    if len(response['response']) > 200:
+        print(f"Response ends with: ...{response['response'][-150:]}")
+    else:
+        print(f"Response: {response['response']}")
+
