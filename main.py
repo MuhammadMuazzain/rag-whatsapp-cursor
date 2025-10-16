@@ -41,6 +41,9 @@ app = FastAPI(
 rag_engine = None
 conversation_manager = None
 
+rag_engine = None
+conversation_manager = None
+
 
 def _finalize_before_link(text: str) -> str:
     """Simple cleanup before adding support link"""
