@@ -834,27 +834,15 @@ async def whatsapp_webhook(request: Request):
 
 
 
-async def test_rag_endpoint(query: str):
-    """Test endpoint for RAG queries"""
-    if not rag_engine:
-        raise HTTPException(status_code=503, detail="RAG engine not initialized")
+class WhatsAppMessage(BaseModel):
+    """Incoming WhatsApp message from AI.Sensy"""
+    message_id: str
+    from_number: str
+    to_number: str
+    text: str
+    timestamp: Optional[str] = None
     
-    try:
-        result = rag_engine.query(query)
-        return result
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-def main():
-    """Run the FastAPI server"""
-    port = config.get("server_port", 8000)
-    host = config.get("server_host", "0.0.0.0")
-    
-    logger.info(f"Starting WhatsApp RAG Bot on {host}:{port}")
-    logger.info("Make sure Ollama is running with Mistral model loaded")
-    logger.info(f"Webhook URL: http://your-domain:{port}/whatsapp-webhook")
-    
-    uvicorn.run(app, host=host, port=port)
-
-if __name__ == "__main__":
-    main()
+class WebhookRequest(BaseModel):
+    """AI.Sensy webhook payload"""
+    event: str
+    data: Dict
