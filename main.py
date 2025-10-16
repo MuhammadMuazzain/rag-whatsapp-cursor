@@ -72,18 +72,6 @@ def _finalize_before_link(text: str) -> str:
     return text
 
 
-class WhatsAppMessage(BaseModel):
-    """Incoming WhatsApp message from AI.Sensy"""
-    message_id: str
-    from_number: str
-    to_number: str
-    text: str
-    timestamp: Optional[str] = None
-    
-class WebhookRequest(BaseModel):
-    """AI.Sensy webhook payload"""
-    event: str
-    data: Dict
 
 @app.on_event("startup")
 async def startup_event():
@@ -135,6 +123,20 @@ class ChatRequest(BaseModel):
 
 #     return StreamingResponse(event_stream(), media_type="text/plain")
 
+
+
+class WhatsAppMessage(BaseModel):
+    """Incoming WhatsApp message from AI.Sensy"""
+    message_id: str
+    from_number: str
+    to_number: str
+    text: str
+    timestamp: Optional[str] = None
+    
+class WebhookRequest(BaseModel):
+    """AI.Sensy webhook payload"""
+    event: str
+    data: Dict
 
 
 
