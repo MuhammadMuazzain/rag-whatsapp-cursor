@@ -70,6 +70,7 @@ test_messages = [
     "What is vitiligo?",
     "Tell me about symptoms",
     "How to sign up for NSC trial?"
+    "What does NSC even mean?"
 ]
 
 for msg in test_messages:
@@ -87,11 +88,3 @@ for msg in test_messages:
     else:
         print(f"Response: {response['response']}")
 
-
-
-if __name__ == "__main__":
-    main()
-
-
-if __name__ == "__main__":
-    main()
